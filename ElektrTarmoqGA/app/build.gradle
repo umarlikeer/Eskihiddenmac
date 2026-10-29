@@ -15,6 +15,10 @@ android {
         versionCode 1
         versionName '1.0'
         ndk { abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64' }
+        python {
+            version '3.10'
+            pip { install 'numpy' }
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -22,9 +26,4 @@ android {
     }
     kotlinOptions { jvmTarget = '17' }
     sourceSets { main { assets.srcDirs = ['src/main/assets'] } }
-}
-
-python {
-    version '3.10'
-    pip { install 'numpy' }
 }
