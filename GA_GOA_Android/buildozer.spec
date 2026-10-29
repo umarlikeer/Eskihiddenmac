@@ -1,5 +1,5 @@
 [app]
-title = GA-GOA Elektr Tarmog'i
+title = GA-GOA Elektr Tarmogʻi
 package.name = gagoelectrnetwork
 package.domain = uz.research.powergrid
 source.dir = .
