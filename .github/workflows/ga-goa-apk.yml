@@ -1,0 +1,38 @@
+name: Build GA-GOA APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master, 'claude/**' ]
+    paths: [ 'GA_GOA_Android/**', '.github/workflows/ga-goa-apk.yml' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: GA_GOA_Android
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            git zip unzip openjdk-17-jdk python3-pip python3-venv \
+            autoconf libtool pkg-config zlib1g-dev libncurses5-dev \
+            libncursesw5-dev libtinfo6 cmake libffi-dev libssl-dev \
+            build-essential
+      - name: Install Buildozer
+        run: |
+          python3 -m pip install --user --upgrade pip
+          python3 -m pip install --user buildozer cython==0.29.36
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Build debug APK
+        run: buildozer -v android debug
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ga-goa-debug-apk
+          path: GA_GOA_Android/bin/*.apk
+          if-no-files-found: error

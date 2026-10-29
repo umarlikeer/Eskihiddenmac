@@ -1,0 +1,43 @@
+   "Asosiy ma'lumotlar"
+Tugunlar va shoxobchalar soni, balanslovchi tugun kuchlanishi va hisoblash aniqligi� 
+13  20  145   0  0.001
+Elektr tarmog'i shoxobchalari haqida ma'lumo  
+14  2    3.7      11.3     1      0    0.000251   0
+14  5   10.29     42.5     1      0    0.000208   0
+2  5    10.84     33.3     1      0    0.000162   0
+2  4    11.06     33.5     1      0    0.000234   0
+2  3     8.95     37.7     1      0    0.000178   0
+3  4    12.77     32.6     1      0    0.000165   0
+4  7     0.0      39.94    0.978  0    0.0        0
+4  9     0        106.22   0.969  0     0         1
+4  5     7.55      8.02    1      0    0.000061   0
+5  6     0        48.13    0.932  0    0.0   0
+6  11   18.09     37.9     1      0    0.0   0
+6  13   12.62     24.8     1      0    0.0   0
+6  12   23.44    48.88     1      0    0.0   0
+12 13   42.1     38.1      1      0    0.0   0
+13  1   32.58    66.3      1      0    0.0   0
+9   1   24.04    51.1      1      0    0.0   0
+9  10    6.06    16.1      1      0    0.0   0
+10 11    15.65   36.6      1      0    0.0   0
+7  8      0.02   33.05     1      0    0.0   0
+7  9      0.02   20.9      1      0    0.0   0
+Elektr tarmog'i tugunlari (shinalari) haqida ma'lumot
+1    14.9     5     138    0      0       0
+2    -40.5   -21.5  138    0      0       0
+3    47.3    -7.3   138    0      0       0
+4    47.8    -3.9   138    0      0       0
+5     7.6     1.6   138    0      0       0
+6    11.2     7.5   138    0      0       0
+7     0.0     0.0   138    0      0       0
+8     0.0     0.0   138    0      0       0
+9    29.5    16.6   138    0      0       1
+10    9        5.8  138    0      0       0
+11    3.5      1.8  138    0      0       0
+12    6.1      1.6  138    0      0       0
+13   13.5      5.8  138    0      0       0
+Q cheklovlari (qmin qmax)
+-44.1 29.85
+Transformatorlarning optimallashtirilayotgan kompleks transformatsiya koeffitsientlarining haqiqiy va mavhum qismlarining cheklangan (ruxsat etilgan) qiymatlari 
+0.96  1.12  -0.1  0.1
+0  0
