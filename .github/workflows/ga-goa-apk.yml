@@ -1,0 +1,68 @@
+name: Build GA-GOA APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master, 'claude/**' ]
+    paths: [ 'GA_GOA_Android/**', '.github/workflows/ga-goa-apk.yml' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: GA_GOA_Android
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            git zip unzip python3-pip python3-venv \
+            autoconf libtool pkg-config zlib1g-dev libncurses5-dev \
+            libncursesw5-dev libtinfo6 cmake libffi-dev libssl-dev \
+            build-essential
+      - name: Install Buildozer
+        run: |
+          python3 -m pip install --user --upgrade pip
+          python3 -m pip install --user buildozer cython==0.29.36
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Build debug APK
+        run: buildozer -v android debug
+      - name: Verify APK integrity
+        run: |
+          # An APK is a zip; -t checks every entry's CRC, so this proves the
+          # built file itself is sound before we publish it.
+          for f in bin/*.apk; do
+            echo "Checking $f"
+            unzip -t "$f" >/dev/null
+          done
+          echo "APK integrity OK"
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ga-goa-debug-apk
+          path: GA_GOA_Android/bin/*.apk
+          if-no-files-found: error
+      - name: Publish APK as a GitHub Release asset
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # GitHub artifacts are delivered as a double-zip (an outer .zip
+          # wrapping the .apk, itself a zip). Large double-zips often fail a
+          # CRC check when unpacked on a phone, so publish the raw .apk as a
+          # release asset instead: a direct, installable download, no unzip.
+          gh release delete ga-goa-latest --yes --cleanup-tag || true
+          gh release create ga-goa-latest bin/*.apk \
+            --target "$GITHUB_SHA" \
+            --title "GA-GOA APK (eng so'nggi)" \
+            --notes "Avtomatik yig'ilgan debug APK. Telefonga to'g'ridan-to'g'ri yuklab o'rnating — arxivdan chiqarish shart emas."

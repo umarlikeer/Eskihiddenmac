@@ -1,0 +1,28 @@
+Elektr tarmog'ini genetik algoritm bilan optimallashtirish
+Rejim: combined
+Populyatsiya: 10
+Avlodlar: 1
+Boshlang'ich aktiv isrof: 8.99798228 MW
+Yakuniy aktiv isrof: 8.30819977 MW
+Kamayish: 0.68978251 MW (7.6660 %)
+
+Tugun kuchlanishlari (p.u.):
+1: 0.971727
+2: 1.037597
+3: 1.014180
+4: 0.998479
+5: 1.006866
+6: 1.009847
+7: 1.000816
+8: 1.000816
+9: 0.992505
+10: 0.987678
+11: 0.994957
+12: 0.993875
+13: 0.988654
+
+Q qiymatlari (MVAr):
+Tugun 9: -10.793960
+
+Transformator koeffitsientlari:
+Shoxobcha 4-9: Kre=1.061066, Kim=0.036610

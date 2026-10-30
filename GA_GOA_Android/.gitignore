@@ -1,0 +1,5 @@
+bin/
+.buildozer/
+__pycache__/
+results/
+*.apk
